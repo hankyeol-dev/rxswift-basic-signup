@@ -106,9 +106,4 @@ extension SignUpViewController {
             }
             .disposed(by: disposeBag)
     }
-    
-    private func validateEmail(for email: String) -> Bool {
-        let regex = "[A-Z0-9a-z._%+-]+@[A-Z0-9a-z._%-]+\\.[A-Za-z]{1,64}"
-        return email.range(of: regex, options: .regularExpression) != nil
-    }
 }

@@ -4,7 +4,7 @@
 //
 //  Created by jack on 2023/10/30.
 //
- 
+
 import UIKit
 
 import SnapKit
@@ -18,7 +18,7 @@ class BirthdayViewController: UIViewController {
     private let validationColor = PublishRelay<UIColor>()
     private let validationText = PublishRelay<String>()
     private let birthText = PublishRelay<String>()
-   
+    
     // MARK: View Objects
     private let birthDayPicker: UIDatePicker = {
         let picker = UIDatePicker()
@@ -30,7 +30,7 @@ class BirthdayViewController: UIViewController {
     }()
     private let infoLabel = UILabel()
     private let birthLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.textAlignment = .center
         label.textColor = Color.black
         label.numberOfLines = 0
@@ -40,7 +40,7 @@ class BirthdayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = Color.white
         
         configureLayout()
@@ -52,7 +52,7 @@ class BirthdayViewController: UIViewController {
         view.addSubview(birthLabel)
         view.addSubview(birthDayPicker)
         view.addSubview(nextButton)
- 
+        
         infoLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(80)
             $0.centerX.equalToSuperview()
@@ -67,7 +67,7 @@ class BirthdayViewController: UIViewController {
             $0.top.equalTo(birthLabel.snp.bottom).offset(8)
             $0.centerX.equalToSuperview()
         }
-   
+        
         nextButton.snp.makeConstraints { make in
             make.height.equalTo(50)
             make.top.equalTo(birthDayPicker.snp.bottom).offset(30)
@@ -83,13 +83,7 @@ extension BirthdayViewController {
                 let alert = UIAlertController(title: "회원가입 하실?", message: "진짜?", preferredStyle: .alert)
                 
                 alert.addAction(UIAlertAction(title: "네", style: .default, handler: { _ in
-                        let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-                        let sceneDelegate = scene?.delegate as? SceneDelegate
-                        
-                        let window = sceneDelegate?.window
-                        
-                        window?.rootViewController = UINavigationController(rootViewController: SignInViewController())
-                        window?.makeKeyAndVisible()
+                    owner.dismissStack(for: SignInViewController())
                 }))
                 alert.addAction(UIAlertAction(title: "아니요", style: .cancel))
                 
@@ -99,12 +93,12 @@ extension BirthdayViewController {
         
         validationColor
             .bind(to:
-                  infoLabel.rx.textColor,
+                    infoLabel.rx.textColor,
                   birthLabel.rx.textColor,
                   nextButton.rx.backgroundColor
             )
             .disposed(by: disposeBag)
-
+        
         validationText
             .bind(to: infoLabel.rx.text)
             .disposed(by: disposeBag)

@@ -15,8 +15,7 @@ final class PasswordViewController: UIViewController {
     
     // MARK: RX
     private let disposeBag = DisposeBag()
-    private let validationColor = PublishRelay<UIColor>()
-    private let validationText = PublishRelay<String>()
+    private let viewModel = PasswordViewModel()
     
     // MARK: View Objects
     private let passwordTextField = SignTextField(placeholderText: "비밀번호를 입력해주세요")
@@ -25,13 +24,11 @@ final class PasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = Color.white
         
         configureLayout()
         bindView()
     }
-        
     private func configureLayout() {
         view.addSubview(passwordTextField)
         view.addSubview(passwordValidationText)
@@ -61,32 +58,37 @@ final class PasswordViewController: UIViewController {
 
 extension PasswordViewController {
     private func bindView() {
-        nextButton.rx.tap
+        
+        let input = PasswordViewModel.Input(
+            password: passwordTextField.rx.text,
+            onTouchNextButton: nextButton.rx.tap
+        )
+        
+        let output = viewModel.transform(for: input)
+        
+        output.onTouchNextButton
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(PhoneViewController(), animated: true)
             }
             .disposed(by: disposeBag)
         
-        validationColor
+        output.validationColor
+            .map { $0.byColor }
             .bind(to: passwordValidationText.rx.textColor, nextButton.rx.backgroundColor)
             .disposed(by: disposeBag)
         
-        validationColor
+        output.validationColor
+            .map { $0.byColor }
             .map { $0.cgColor }
             .bind(to: passwordTextField.layer.rx.borderColor)
             .disposed(by: disposeBag)
         
-        validationText
+        output.validationText
             .bind(to: passwordValidationText.rx.text)
             .disposed(by: disposeBag)
         
-        passwordTextField.rx.text.orEmpty
-            .map { $0.count >= 8 }
-            .bind(with: self) { owner, valid in
-                owner.validationColor.accept(valid ? .systemGreen : .systemRed)
-                owner.nextButton.isEnabled = valid
-                owner.validationText.accept(valid ? "유효한 비밀번호입니다." : "유효하지 않은 비밀번호입니다.")
-            }
+        output.isValid
+            .bind(to: passwordValidationText.rx.isHidden, nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
     }
 }

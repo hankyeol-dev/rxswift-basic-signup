@@ -15,9 +15,7 @@ final class PhoneViewController: UIViewController {
     
     // MARK: RX
     private let disposeBag = DisposeBag()
-    private let validationColor = PublishRelay<UIColor>()
-    private let validationText = PublishRelay<String>()
-    private let phoneText = BehaviorRelay(value: "010")
+    private let viewModel = PhoneViewModel()
    
     // MARK: View Objects
     private let phoneTextField = SignTextField(placeholderText: "연락처를 입력해주세요")
@@ -62,43 +60,39 @@ final class PhoneViewController: UIViewController {
 
 extension PhoneViewController {
     private func bindView() {
-        nextButton.rx.tap
+        let input = PhoneViewModel.Input(
+            phone: phoneTextField.rx.text,
+            onTouchNextButton: nextButton.rx.tap
+        )
+        
+        let output = viewModel.transform(for: input)
+        
+        output.onTouchNextButton
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(BirthdayViewController(), animated: true)
             }
             .disposed(by: disposeBag)
         
-        validationColor
+        output.validationColor
+            .map { $0.byColor }
             .bind(to: phoneValidationText.rx.textColor, nextButton.rx.backgroundColor)
             .disposed(by: disposeBag)
         
-        validationColor
+        output.validationColor
+            .map { $0.byColor }
             .map { $0.cgColor }
             .bind(to: phoneTextField.layer.rx.borderColor)
             .disposed(by: disposeBag)
         
-        validationText
+        output.validationText
             .bind(to: phoneValidationText.rx.text)
             .disposed(by: disposeBag)
         
-        phoneText
+        output.phone
             .bind(to: phoneTextField.rx.text).disposed(by: disposeBag)
         
-        phoneTextField.rx.text.orEmpty
-            .bind(with: self) { owner, text in
-                if text.count == 3 || text.count == 8 {
-                    owner.phoneText.accept( text + "-" )
-                }
-            }
-            .disposed(by: disposeBag)
-        
-        phoneTextField.rx.text.orEmpty
-            .map { self.validatePhoneNumber(for: $0) }
-            .bind(with: self) { owner, valid in
-                owner.validationColor.accept(valid ? .systemGreen : .systemRed)
-                owner.validationText.accept(valid ? "유효한 전화번호입니다." : "유효하지 않은 전화번호입니다.")
-                owner.nextButton.isEnabled = valid
-            }
+        output.isValid
+            .bind(to: nextButton.rx.isEnabled, phoneValidationText.rx.isHidden)
             .disposed(by: disposeBag)
     }
     

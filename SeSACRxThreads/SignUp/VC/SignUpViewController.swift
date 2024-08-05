@@ -15,8 +15,7 @@ final class SignUpViewController: UIViewController {
     
     // MARK: RX Variables
     private let disposeBag = DisposeBag()
-    private let validationColor = PublishRelay<UIColor>()
-    private let validationText = PublishRelay<String>()
+    private let viewModel = SignUpViewModel()
 
     // MARK: View Objects
     private let emailTextField = SignTextField(placeholderText: "이메일을 입력해주세요")
@@ -78,32 +77,37 @@ final class SignUpViewController: UIViewController {
 
 extension SignUpViewController {
     private func bindView() {
-        nextButton.rx.tap
+        
+        let input = SignUpViewModel.Input(
+            email: emailTextField.rx.text,
+            onTouchNextButton: nextButton.rx.tap
+        )
+        
+        let output = viewModel.transform(for: input)
+        
+        output.onTouchNextButton
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(PasswordViewController(), animated: true)
             }
             .disposed(by: disposeBag)
         
-        validationColor
+        output.validationColor
+            .map {  $0.byColor }
             .bind(to: emailValidationText.rx.textColor, nextButton.rx.backgroundColor)
             .disposed(by: disposeBag)
         
-        validationColor
+        output.validationColor
+            .map { $0.byColor }
             .map { $0.cgColor }
             .bind(to: emailTextField.layer.rx.borderColor)
             .disposed(by: disposeBag)
         
-        validationText
-            .bind(to: emailValidationText.rx.text)
+        output.isValid
+            .bind(to: nextButton.rx.isEnabled, emailValidationText.rx.isHidden)
             .disposed(by: disposeBag)
         
-        emailTextField.rx.text.orEmpty
-            .map { $0.count >= 3 && self.validateEmail(for: $0) }
-            .bind(with: self) { owner, valid in
-                owner.validationColor.accept(valid ? .systemGreen : .systemRed)
-                owner.nextButton.isEnabled = valid
-                owner.validationText.accept(valid ? "유효한 이메일입니다." : "유효하지 않은 이메일입니다.")
-            }
+        output.validationText
+            .bind(to: emailValidationText.rx.text)
             .disposed(by: disposeBag)
     }
 }

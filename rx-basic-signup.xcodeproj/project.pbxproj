@@ -33,6 +33,11 @@
 		810014882C5CA8A3006868D4 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810014872C5CA8A3006868D4 /* ShoppingListViewController.swift */; };
 		8100148A2C5CA8D9006868D4 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810014892C5CA8D9006868D4 /* Extension+UIViewController.swift */; };
 		8100148C2C5CAB5D006868D4 /* ShoppingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8100148B2C5CAB5D006868D4 /* ShoppingListCell.swift */; };
+		81D753692C60AB0C000DDBB8 /* Enum+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D753682C60AB0C000DDBB8 /* Enum+Validation.swift */; };
+		81D7536B2C60B82D000DDBB8 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D7536A2C60B82D000DDBB8 /* SignUpViewModel.swift */; };
+		81D7536F2C60BB62000DDBB8 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D7536E2C60BB62000DDBB8 /* PasswordViewModel.swift */; };
+		81D753712C60BC94000DDBB8 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D753702C60BC94000DDBB8 /* PhoneViewModel.swift */; };
+		81D753772C60BF93000DDBB8 /* ShoppingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D753762C60BF93000DDBB8 /* ShoppingListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +85,11 @@
 		810014872C5CA8A3006868D4 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		810014892C5CA8D9006868D4 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		8100148B2C5CAB5D006868D4 /* ShoppingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListCell.swift; sourceTree = "<group>"; };
+		81D753682C60AB0C000DDBB8 /* Enum+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+Validation.swift"; sourceTree = "<group>"; };
+		81D7536A2C60B82D000DDBB8 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		81D7536E2C60BB62000DDBB8 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
+		81D753702C60BC94000DDBB8 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
+		81D753762C60BF93000DDBB8 /* ShoppingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +152,7 @@
 				041280232AEF9BAB00972552 /* AppDelegate.swift */,
 				041280252AEF9BAB00972552 /* SceneDelegate.swift */,
 				041280272AEF9BAB00972552 /* ViewController.swift */,
+				81D753682C60AB0C000DDBB8 /* Enum+Validation.swift */,
 				810014892C5CA8D9006868D4 /* Extension+UIViewController.swift */,
 				0412802C2AEF9BAC00972552 /* Assets.xcassets */,
 				041280312AEF9BAC00972552 /* Info.plist */,
@@ -170,8 +181,8 @@
 		041280532AEF9C1F00972552 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				041280692AEFA91E00972552 /* SignUpViewController.swift */,
-				0412806B2AEFABFE00972552 /* PasswordViewController.swift */,
+				81D753732C60BCA3000DDBB8 /* VM */,
+				81D753722C60BC9C000DDBB8 /* VC */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -197,9 +208,8 @@
 		0412806D2AEFAD0F00972552 /* SignUpOptional */ = {
 			isa = PBXGroup;
 			children = (
-				0412806E2AEFAD2D00972552 /* BirthdayViewController.swift */,
-				041280702AEFAD3D00972552 /* PhoneViewController.swift */,
-				041280722AEFAD4B00972552 /* NicknameViewController.swift */,
+				81D753752C60BCB5000DDBB8 /* VM */,
+				81D753742C60BCAB000DDBB8 /* VC */,
 			);
 			path = SignUpOptional;
 			sourceTree = "<group>";
@@ -219,8 +229,45 @@
 			children = (
 				810014872C5CA8A3006868D4 /* ShoppingListViewController.swift */,
 				8100148B2C5CAB5D006868D4 /* ShoppingListCell.swift */,
+				81D753762C60BF93000DDBB8 /* ShoppingListViewModel.swift */,
 			);
 			path = Shopping;
+			sourceTree = "<group>";
+		};
+		81D753722C60BC9C000DDBB8 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				041280692AEFA91E00972552 /* SignUpViewController.swift */,
+				0412806B2AEFABFE00972552 /* PasswordViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		81D753732C60BCA3000DDBB8 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				81D7536A2C60B82D000DDBB8 /* SignUpViewModel.swift */,
+				81D7536E2C60BB62000DDBB8 /* PasswordViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		81D753742C60BCAB000DDBB8 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				0412806E2AEFAD2D00972552 /* BirthdayViewController.swift */,
+				041280702AEFAD3D00972552 /* PhoneViewController.swift */,
+				041280722AEFAD4B00972552 /* NicknameViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		81D753752C60BCB5000DDBB8 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				81D753702C60BC94000DDBB8 /* PhoneViewModel.swift */,
+			);
+			path = VM;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +411,8 @@
 				041280782AF1D14000972552 /* Resource.swift in Sources */,
 				810014882C5CA8A3006868D4 /* ShoppingListViewController.swift in Sources */,
 				8100148C2C5CAB5D006868D4 /* ShoppingListCell.swift in Sources */,
+				81D753692C60AB0C000DDBB8 /* Enum+Validation.swift in Sources */,
+				81D753712C60BC94000DDBB8 /* PhoneViewModel.swift in Sources */,
 				0412806F2AEFAD2D00972552 /* BirthdayViewController.swift in Sources */,
 				041280652AEFA2F000972552 /* SignTextField.swift in Sources */,
 				0412806C2AEFABFE00972552 /* PasswordViewController.swift in Sources */,
@@ -373,6 +422,7 @@
 				04F6DC022C5B0D8200667F4D /* DetailViewController.swift in Sources */,
 				041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */,
 				04F6DBFE2C5B0C0300667F4D /* SearchViewController.swift in Sources */,
+				81D7536B2C60B82D000DDBB8 /* SignUpViewModel.swift in Sources */,
 				04F6DC002C5B0C2200667F4D /* SearchTableViewCell.swift in Sources */,
 				041280732AEFAD4B00972552 /* NicknameViewController.swift in Sources */,
 				0412806A2AEFA91E00972552 /* SignUpViewController.swift in Sources */,
@@ -380,6 +430,8 @@
 				041280712AEFAD3D00972552 /* PhoneViewController.swift in Sources */,
 				041280262AEF9BAB00972552 /* SceneDelegate.swift in Sources */,
 				041280582AEFA05300972552 /* SignInViewModel.swift in Sources */,
+				81D753772C60BF93000DDBB8 /* ShoppingListViewModel.swift in Sources */,
+				81D7536F2C60BB62000DDBB8 /* PasswordViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,11 +13,10 @@ import RxCocoa
 
 final class SignInViewController: UIViewController {
     
+    private let viewModel = SignInViewModel()
+    
     // MARK: RX
     private let disposeBag = DisposeBag()
-    private let validationColor = PublishRelay<UIColor>()
-    private let emailValidationText = PublishRelay<String>()
-    private let passwordValidationText = PublishRelay<String>()
     
     // MARK: View Objects
     private let emailTextField = SignTextField(placeholderText: "이메일을 입력해주세요")
@@ -85,57 +84,52 @@ final class SignInViewController: UIViewController {
 
 extension SignInViewController {
     private func bindView() {
-        signInButton.rx.tap
+        let input = SignInViewModel.Input(
+            onTouchSignInButton: signInButton.rx.tap,
+            onTouchSignUpButton: signUpButton.rx.tap,
+            email: emailTextField.rx.text,
+            password: passwordTextField.rx.text
+        )
+        
+        let output = viewModel.transform(for: input)
+        
+        output.onTouchSignInButton
             .bind(with: self) { owner, _ in
                 owner.dismissStack(for: ShoppingListViewController())
             }
             .disposed(by: disposeBag)
         
-        signUpButton.rx.tap
+        output.onTouchSignUpButton
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(SignUpViewController(), animated: true)
             }
             .disposed(by: disposeBag)
         
-        emailValidationText
+        output.emailValidationText
             .bind(to: emailValidationLabel.rx.text)
             .disposed(by: disposeBag)
         
-        passwordValidationText
+        output.emailValidationText
+            .map { $0.count == 0 }
+            .bind(to: emailValidationLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        output.passwordValidationText
             .bind(to: passwordValidationLabel.rx.text)
             .disposed(by: disposeBag)
         
-        validationColor
+        output.passwordValidationText
+            .map { $0.count == 0 }
+            .bind(to: passwordValidationLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        output.validationColor
+            .map { $0.byColor }
             .bind(to: signInButton.rx.backgroundColor)
             .disposed(by: disposeBag)
-                
-        let emailValidation = emailTextField.rx.text.orEmpty
-            .map { $0.count >= 3 && self.validateEmail(for: $0) }
-        let passwordValidation = passwordTextField.rx.text.orEmpty
-            .map { $0.count >= 8 }
         
-        Observable.combineLatest([emailValidation, passwordValidation])
-            .bind(with: self) { owner, validations in
-                
-                let isEnabled = (validations.filter { $0 == true }).count == validations.count
-                
-                owner.signInButton.isEnabled = isEnabled
-                owner.validationColor.accept(isEnabled ? .systemGreen : .darkGray)
-            }
-            .disposed(by: disposeBag)
-        
-        emailValidation
-            .bind(with: self) { owner, valid in
-                owner.emailValidationText.accept(valid ? "" : "이메일 비었거나 잘못됨")
-                owner.emailValidationLabel.isHidden = valid
-            }
-            .disposed(by: disposeBag)
-        
-        passwordValidation
-            .bind(with: self) { owner, valid in
-                owner.passwordValidationText.accept(valid ? "" : "비번 비었거나 잘못됨")
-                owner.passwordValidationLabel.isHidden = valid
-            }
+        output.validationButtonTouch
+            .bind(to: signInButton.rx.isEnabled)
             .disposed(by: disposeBag)
     }
 }

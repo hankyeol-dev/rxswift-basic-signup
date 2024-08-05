@@ -11,11 +11,15 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
+// realm vs diffableDatasource 함께 쓸 때?
+// diffableDatasource snapshotusingreloaddata
+
 final class ShoppingListViewController: UIViewController {
     
     // MARK: RX
     private let disposeBag = DisposeBag()
-    private let listData = BehaviorRelay<[ShoppingListCellInput]>(value: [])
+    private let viewModel = ShoppingListViewModel()
+//    private let listData = BehaviorRelay<[ShoppingListCellInput]>(value: [])
     
     
     // MARK: View Objects
@@ -78,58 +82,74 @@ final class ShoppingListViewController: UIViewController {
 
 extension ShoppingListViewController {
     private func bindView() {
-        listData
+        let input = ShoppingListViewModel.Input(
+            text: field.rx.text,
+            onTouchListUpButton: button.rx.tap
+        )
+        let output = viewModel.transform(for: input)
+        
+        output.isCanListUp
+            .bind(to: button.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.onTouchListUpButton
+            .bind(with: self, onNext: { owner, _ in
+                owner.field.text = ""
+                owner.view.endEditing(true)
+            })
+            .disposed(by: disposeBag)
+        
+        output.list
             .bind(
                 to: table.rx.items(cellIdentifier: ShoppingListCell.id, cellType: ShoppingListCell.self)
             ) { row, data, cell in
-                
-               
                 cell.bindCell(for: data)
+                
                 cell.check.rx.tap
                     .bind(with: self) { owner, _ in
-                        var datas = owner.listData.value
-                        datas = datas.enumerated().map { i, v in
-                            if i == row {
-                                return ShoppingListCellInput(descript: v.descript, isCompleted: !v.isCompleted, isFavorited: v.isFavorited)
-                            } else {
-                                return v
-                            }
-                        }
-                        owner.listData.accept(datas)
-                    }
-                    .disposed(by: cell.disposeBag)
-                cell.favorite.rx.tap
-                    .bind(with: self) { owner, _ in
-                        var datas = owner.listData.value
-                        datas = datas.enumerated().map { i, v in
-                            if i == row {
-                                return ShoppingListCellInput(descript: v.descript, isCompleted: v.isCompleted, isFavorited: !v.isFavorited)
-                            } else {
-                                return v
-                            }
-                        }
-                        owner.listData.accept(datas)
+                        var datas = data
+                        datas
                     }
                     .disposed(by: cell.disposeBag)
             }
             .disposed(by: disposeBag)
         
-        field.rx.text.orEmpty
-            .map { $0.count >= 1 }
-            .bind(with: self) { owner, valid in
-                owner.button.isEnabled = valid
-            }
-            .disposed(by: disposeBag)
         
-        button.rx.tap
-            .bind(with: self) { owner, _ in
-                guard let text = owner.field.text else { return }
-                var datas = owner.listData.value
-                datas.insert(ShoppingListCellInput(descript: text, isCompleted: false, isFavorited: false), at: 0)
-                owner.listData.accept(datas)
-                owner.view.endEditing(true)
-                owner.field.text = ""
-            }
-            .disposed(by: disposeBag)
+//        listData
+//            .bind(
+//                to: table.rx.items(cellIdentifier: ShoppingListCell.id, cellType: ShoppingListCell.self)
+//            ) { row, data, cell in
+//                
+//               
+//                cell.bindCell(for: data)
+//                cell.check.rx.tap
+//                    .bind(with: self) { owner, _ in
+//                        var datas = owner.listData.value
+//                        datas = datas.enumerated().map { i, v in
+//                            if i == row {
+//                                return ShoppingListCellInput(descript: v.descript, isCompleted: !v.isCompleted, isFavorited: v.isFavorited)
+//                            } else {
+//                                return v
+//                            }
+//                        }
+//                        owner.listData.accept(datas)
+//                    }
+//                    .disposed(by: cell.disposeBag)
+//                cell.favorite.rx.tap
+//                    .bind(with: self) { owner, _ in
+//                        var datas = owner.listData.value
+//                        datas = datas.enumerated().map { i, v in
+//                            if i == row {
+//                                return ShoppingListCellInput(descript: v.descript, isCompleted: v.isCompleted, isFavorited: !v.isFavorited)
+//                            } else {
+//                                return v
+//                            }
+//                        }
+//                        owner.listData.accept(datas)
+//                    }
+//                    .disposed(by: cell.disposeBag)
+//            }
+//            .disposed(by: disposeBag)
+
     }
 }

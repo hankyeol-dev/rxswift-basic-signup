@@ -38,6 +38,7 @@
 		81D7536F2C60BB62000DDBB8 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D7536E2C60BB62000DDBB8 /* PasswordViewModel.swift */; };
 		81D753712C60BC94000DDBB8 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D753702C60BC94000DDBB8 /* PhoneViewModel.swift */; };
 		81D753772C60BF93000DDBB8 /* ShoppingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D753762C60BF93000DDBB8 /* ShoppingListViewModel.swift */; };
+		81F928F62C6343AB00746867 /* ShoppingRecommendCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F928F52C6343AB00746867 /* ShoppingRecommendCollectionItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		81D7536E2C60BB62000DDBB8 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
 		81D753702C60BC94000DDBB8 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
 		81D753762C60BF93000DDBB8 /* ShoppingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewModel.swift; sourceTree = "<group>"; };
+		81F928F52C6343AB00746867 /* ShoppingRecommendCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingRecommendCollectionItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 			children = (
 				810014872C5CA8A3006868D4 /* ShoppingListViewController.swift */,
 				8100148B2C5CAB5D006868D4 /* ShoppingListCell.swift */,
+				81F928F52C6343AB00746867 /* ShoppingRecommendCollectionItem.swift */,
 				81D753762C60BF93000DDBB8 /* ShoppingListViewModel.swift */,
 			);
 			path = Shopping;
@@ -418,6 +421,7 @@
 				0412806C2AEFABFE00972552 /* PasswordViewController.swift in Sources */,
 				041280562AEFA04800972552 /* SignInViewController.swift in Sources */,
 				041280282AEF9BAB00972552 /* ViewController.swift in Sources */,
+				81F928F62C6343AB00746867 /* ShoppingRecommendCollectionItem.swift in Sources */,
 				041280632AEFA0CE00972552 /* PointButton.swift in Sources */,
 				04F6DC022C5B0D8200667F4D /* DetailViewController.swift in Sources */,
 				041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */,

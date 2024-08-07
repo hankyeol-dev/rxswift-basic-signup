@@ -13,22 +13,28 @@ import RxCocoa
 final class ShoppingListViewModel {
     private let disposeBag = DisposeBag()
     
+    private var shoppingList: [ShoppingListCellInput] = []
+    private var shoppingRecommendList: [String] = ["키보드", "마우스", "짬뽕", "떡볶이", "맥북", "애플워치", "에어팟", "맥세이프충전기", "아이패드", "애플펜슬"]
+    
     struct Input {
         let text: ControlProperty<String?>
         let onTouchListUpButton: ControlEvent<Void>
-//        let onTouchCheckButton: ControlEvent<Void>
-//        let onTouchFavoriteButton: ControlEvent<Void>
+        let onTouchCheckButton: PublishRelay<Int>
+        let onTouchFavoriteButton: PublishRelay<Int>
+        let onTouchRecommendItem: PublishRelay<(Int, String)>
     }
     
     struct Output {
         let isCanListUp: PublishRelay<Bool>
         let list: BehaviorRelay<[ShoppingListCellInput]>
+        let recommendList: BehaviorRelay<[String]>
         let onTouchListUpButton: ControlEvent<Void>
     }
     
     func transform(for input: Input) -> Output {
         let isCanListUp = PublishRelay<Bool>()
-        let list = BehaviorRelay<[ShoppingListCellInput]>(value: [])
+        let list = BehaviorRelay<[ShoppingListCellInput]>(value: shoppingList)
+        let recommendList = BehaviorRelay<[String]>(value: shoppingRecommendList)
         var text = ""
         
         input.text.orEmpty
@@ -46,34 +52,47 @@ final class ShoppingListViewModel {
         
         input.onTouchListUpButton
             .bind(with: self) { owner, _ in
-                var datas = list.value
-                datas.insert(
-                    ShoppingListCellInput(
-                        descript: text,
-                        isCompleted: false, isFavorited: false), 
-                    at: 0
-                )
-                list.accept(datas)
+                owner.shoppingList.insert(
+                    ShoppingListCellInput(descript: text, isCompleted: false, isFavorited: false),
+                    at: 0)
+                list.accept(owner.shoppingList)
+            }
+            .disposed(by: disposeBag)
+
+        input.onTouchCheckButton
+            .bind(with: self) { owner, row in
+                owner.shoppingList[row].isCompleted.toggle()
+                list.accept(owner.shoppingList)
             }
             .disposed(by: disposeBag)
         
-//        input.onTouchCheckButton
-//            .bind(with: self) { _,_ in
-//                var datas = list.value
-//                datas = datas.enumerated().map { i, v in
-//                    if i == row {
-//                        return ShoppingListCellInput(descript: v.descript, isCompleted: !v.isCompleted, isFavorited: v.isFavorited)
-//                    } else {
-//                        return v
-//                    }
-//                }
-//                list.accept(datas)
-//            }
-//            .disposed(by: disposeBag)
+        input.onTouchFavoriteButton
+            .bind(with: self) { owner, row in
+                owner.shoppingList[row].isFavorited.toggle()
+                list.accept(owner.shoppingList)
+            }
+            .disposed(by: disposeBag)
+        
+        input.onTouchRecommendItem
+            .bind(with: self) { owner, tuple in
+                // recommend 배열에서 제외하기
+                owner.shoppingRecommendList.remove(at: tuple.0)
+                // shoppingList 배열에 추가하기
+                owner.shoppingList.insert(
+                    ShoppingListCellInput(descript: tuple.1, isCompleted: false, isFavorited: false),
+                    at: 0
+                )
+                
+                // output에 반영하기
+                list.accept(owner.shoppingList)
+                recommendList.accept(owner.shoppingRecommendList)
+            }
+            .disposed(by: disposeBag)
         
         return Output(
             isCanListUp: isCanListUp,
             list: list,
+            recommendList: recommendList,
             onTouchListUpButton: input.onTouchListUpButton
         )
     }

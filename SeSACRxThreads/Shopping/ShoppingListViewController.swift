@@ -19,7 +19,6 @@ final class ShoppingListViewController: UIViewController {
     // MARK: RX
     private let disposeBag = DisposeBag()
     private let viewModel = ShoppingListViewModel()
-//    private let listData = BehaviorRelay<[ShoppingListCellInput]>(value: [])
     
     
     // MARK: View Objects
@@ -41,6 +40,17 @@ final class ShoppingListViewController: UIViewController {
         t.rowHeight = 80
         return t
     }()
+    private let collection = {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 100, height: 44)
+        layout.minimumInteritemSpacing = 8
+        layout.scrollDirection = .horizontal
+        
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.register(ShoppingRecommendCollectionItem.self, forCellWithReuseIdentifier: ShoppingRecommendCollectionItem.id)
+        
+        return collection
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +62,7 @@ final class ShoppingListViewController: UIViewController {
     }
 
     private func configure() {
-        [field, button, table].forEach {
+        [field, button, collection, table].forEach {
             view.addSubview($0)
         }
         
@@ -70,8 +80,14 @@ final class ShoppingListViewController: UIViewController {
         
         field.borderStyle = .roundedRect
         
-        table.snp.makeConstraints { make in
+        collection.snp.makeConstraints { make in
             make.top.equalTo(field.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(44)
+        }
+        
+        table.snp.makeConstraints { make in
+            make.top.equalTo(collection.snp.bottom).offset(8)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
@@ -82,9 +98,16 @@ final class ShoppingListViewController: UIViewController {
 
 extension ShoppingListViewController {
     private func bindView() {
+        let checkButtonIndex = PublishRelay<Int>()
+        let favoriteButtonIndex = PublishRelay<Int>()
+        let recommendItemTuple = PublishRelay<(Int, String)>()
+        
         let input = ShoppingListViewModel.Input(
             text: field.rx.text,
-            onTouchListUpButton: button.rx.tap
+            onTouchListUpButton: button.rx.tap,
+            onTouchCheckButton: checkButtonIndex,
+            onTouchFavoriteButton: favoriteButtonIndex,
+            onTouchRecommendItem: recommendItemTuple
         )
         let output = viewModel.transform(for: input)
         
@@ -101,55 +124,41 @@ extension ShoppingListViewController {
         
         output.list
             .bind(
-                to: table.rx.items(cellIdentifier: ShoppingListCell.id, cellType: ShoppingListCell.self)
+                to: table.rx.items(
+                    cellIdentifier: ShoppingListCell.id,
+                    cellType: ShoppingListCell.self)
             ) { row, data, cell in
                 cell.bindCell(for: data)
-                
                 cell.check.rx.tap
-                    .bind(with: self) { owner, _ in
-                        var datas = data
-                        datas
+                    .bind(with: self) { _,_ in
+                        checkButtonIndex.accept(row)
+                    }
+                    .disposed(by: cell.disposeBag)
+                cell.favorite.rx.tap
+                    .bind(with: self) { _,_ in
+                        favoriteButtonIndex.accept(row)
                     }
                     .disposed(by: cell.disposeBag)
             }
             .disposed(by: disposeBag)
         
+        output.recommendList
+            .bind(
+                to: collection.rx.items(
+                    cellIdentifier: ShoppingRecommendCollectionItem.id,
+                    cellType: ShoppingRecommendCollectionItem.self)
+            ) { row, data, item in
+                item.setLabel(for: data)
+            }
+            .disposed(by: disposeBag)
         
-//        listData
-//            .bind(
-//                to: table.rx.items(cellIdentifier: ShoppingListCell.id, cellType: ShoppingListCell.self)
-//            ) { row, data, cell in
-//                
-//               
-//                cell.bindCell(for: data)
-//                cell.check.rx.tap
-//                    .bind(with: self) { owner, _ in
-//                        var datas = owner.listData.value
-//                        datas = datas.enumerated().map { i, v in
-//                            if i == row {
-//                                return ShoppingListCellInput(descript: v.descript, isCompleted: !v.isCompleted, isFavorited: v.isFavorited)
-//                            } else {
-//                                return v
-//                            }
-//                        }
-//                        owner.listData.accept(datas)
-//                    }
-//                    .disposed(by: cell.disposeBag)
-//                cell.favorite.rx.tap
-//                    .bind(with: self) { owner, _ in
-//                        var datas = owner.listData.value
-//                        datas = datas.enumerated().map { i, v in
-//                            if i == row {
-//                                return ShoppingListCellInput(descript: v.descript, isCompleted: v.isCompleted, isFavorited: !v.isFavorited)
-//                            } else {
-//                                return v
-//                            }
-//                        }
-//                        owner.listData.accept(datas)
-//                    }
-//                    .disposed(by: cell.disposeBag)
-//            }
-//            .disposed(by: disposeBag)
-
+        Observable.zip(
+            collection.rx.itemSelected,
+            collection.rx.modelSelected(String.self)
+        )
+        .bind(with: self) { owner, elementTuple in
+            recommendItemTuple.accept((elementTuple.0.row, elementTuple.1))
+        }
+        .disposed(by: disposeBag)
     }
 }

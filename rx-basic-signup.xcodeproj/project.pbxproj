@@ -9,11 +9,8 @@
 /* Begin PBXBuildFile section */
 		041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280232AEF9BAB00972552 /* AppDelegate.swift */; };
 		041280262AEF9BAB00972552 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280252AEF9BAB00972552 /* SceneDelegate.swift */; };
-		041280282AEF9BAB00972552 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280272AEF9BAB00972552 /* ViewController.swift */; };
+		041280282AEF9BAB00972552 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280272AEF9BAB00972552 /* MainTabbarController.swift */; };
 		0412802D2AEF9BAC00972552 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0412802C2AEF9BAC00972552 /* Assets.xcassets */; };
-		0412803B2AEF9BAC00972552 /* SeSACRxThreadsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0412803A2AEF9BAC00972552 /* SeSACRxThreadsTests.swift */; };
-		041280452AEF9BAC00972552 /* SeSACRxThreadsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280442AEF9BAC00972552 /* SeSACRxThreadsUITests.swift */; };
-		041280472AEF9BAC00972552 /* SeSACRxThreadsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280462AEF9BAC00972552 /* SeSACRxThreadsUITestsLaunchTests.swift */; };
 		041280562AEFA04800972552 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280552AEFA04800972552 /* SignInViewController.swift */; };
 		041280582AEFA05300972552 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280572AEFA05300972552 /* SignInViewModel.swift */; };
 		0412805B2AEFA09E00972552 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 0412805A2AEFA09E00972552 /* RxCocoa */; };
@@ -33,6 +30,10 @@
 		810014882C5CA8A3006868D4 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810014872C5CA8A3006868D4 /* ShoppingListViewController.swift */; };
 		8100148A2C5CA8D9006868D4 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810014892C5CA8D9006868D4 /* Extension+UIViewController.swift */; };
 		8100148C2C5CAB5D006868D4 /* ShoppingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8100148B2C5CAB5D006868D4 /* ShoppingListCell.swift */; };
+		8184F3E12C64A8800087D0AE /* ItunesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184F3E02C64A8800087D0AE /* ItunesViewController.swift */; };
+		8184F3E32C64A8880087D0AE /* ItunesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184F3E22C64A8880087D0AE /* ItunesDetailViewController.swift */; };
+		8184F3E52C64A8910087D0AE /* ItunesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184F3E42C64A8910087D0AE /* ItunesViewModel.swift */; };
+		8184F3EA2C64B91B0087D0AE /* ItunesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184F3E92C64B91B0087D0AE /* ItunesModel.swift */; };
 		81D753692C60AB0C000DDBB8 /* Enum+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D753682C60AB0C000DDBB8 /* Enum+Validation.swift */; };
 		81D7536B2C60B82D000DDBB8 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D7536A2C60B82D000DDBB8 /* SignUpViewModel.swift */; };
 		81D7536F2C60BB62000DDBB8 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D7536E2C60BB62000DDBB8 /* PasswordViewModel.swift */; };
@@ -62,14 +63,11 @@
 		041280202AEF9BAB00972552 /* SeSACRxThreads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACRxThreads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		041280232AEF9BAB00972552 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		041280252AEF9BAB00972552 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		041280272AEF9BAB00972552 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		041280272AEF9BAB00972552 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
 		0412802C2AEF9BAC00972552 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		041280312AEF9BAC00972552 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		041280362AEF9BAC00972552 /* SeSACRxThreadsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeSACRxThreadsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0412803A2AEF9BAC00972552 /* SeSACRxThreadsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACRxThreadsTests.swift; sourceTree = "<group>"; };
 		041280402AEF9BAC00972552 /* SeSACRxThreadsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeSACRxThreadsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		041280442AEF9BAC00972552 /* SeSACRxThreadsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACRxThreadsUITests.swift; sourceTree = "<group>"; };
-		041280462AEF9BAC00972552 /* SeSACRxThreadsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeSACRxThreadsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		041280552AEFA04800972552 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		041280572AEFA05300972552 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		041280622AEFA0CE00972552 /* PointButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointButton.swift; sourceTree = "<group>"; };
@@ -86,6 +84,10 @@
 		810014872C5CA8A3006868D4 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		810014892C5CA8D9006868D4 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		8100148B2C5CAB5D006868D4 /* ShoppingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListCell.swift; sourceTree = "<group>"; };
+		8184F3E02C64A8800087D0AE /* ItunesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesViewController.swift; sourceTree = "<group>"; };
+		8184F3E22C64A8880087D0AE /* ItunesDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesDetailViewController.swift; sourceTree = "<group>"; };
+		8184F3E42C64A8910087D0AE /* ItunesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesViewModel.swift; sourceTree = "<group>"; };
+		8184F3E92C64B91B0087D0AE /* ItunesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesModel.swift; sourceTree = "<group>"; };
 		81D753682C60AB0C000DDBB8 /* Enum+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+Validation.swift"; sourceTree = "<group>"; };
 		81D7536A2C60B82D000DDBB8 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		81D7536E2C60BB62000DDBB8 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
@@ -126,8 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				041280222AEF9BAB00972552 /* SeSACRxThreads */,
-				041280392AEF9BAC00972552 /* SeSACRxThreadsTests */,
-				041280432AEF9BAC00972552 /* SeSACRxThreadsUITests */,
 				041280212AEF9BAB00972552 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -145,6 +145,7 @@
 		041280222AEF9BAB00972552 /* SeSACRxThreads */ = {
 			isa = PBXGroup;
 			children = (
+				8184F3DF2C64A8710087D0AE /* Itunes */,
 				810014862C5CA891006868D4 /* Shopping */,
 				041280532AEF9C1F00972552 /* SignUp */,
 				041280542AEF9C2600972552 /* SignIn */,
@@ -153,7 +154,7 @@
 				04F6DBFC2C5B0BC200667F4D /* Search */,
 				041280232AEF9BAB00972552 /* AppDelegate.swift */,
 				041280252AEF9BAB00972552 /* SceneDelegate.swift */,
-				041280272AEF9BAB00972552 /* ViewController.swift */,
+				041280272AEF9BAB00972552 /* MainTabbarController.swift */,
 				81D753682C60AB0C000DDBB8 /* Enum+Validation.swift */,
 				810014892C5CA8D9006868D4 /* Extension+UIViewController.swift */,
 				0412802C2AEF9BAC00972552 /* Assets.xcassets */,
@@ -161,23 +162,6 @@
 				041280772AF1D14000972552 /* Resource.swift */,
 			);
 			path = SeSACRxThreads;
-			sourceTree = "<group>";
-		};
-		041280392AEF9BAC00972552 /* SeSACRxThreadsTests */ = {
-			isa = PBXGroup;
-			children = (
-				0412803A2AEF9BAC00972552 /* SeSACRxThreadsTests.swift */,
-			);
-			path = SeSACRxThreadsTests;
-			sourceTree = "<group>";
-		};
-		041280432AEF9BAC00972552 /* SeSACRxThreadsUITests */ = {
-			isa = PBXGroup;
-			children = (
-				041280442AEF9BAC00972552 /* SeSACRxThreadsUITests.swift */,
-				041280462AEF9BAC00972552 /* SeSACRxThreadsUITestsLaunchTests.swift */,
-			);
-			path = SeSACRxThreadsUITests;
 			sourceTree = "<group>";
 		};
 		041280532AEF9C1F00972552 /* SignUp */ = {
@@ -235,6 +219,41 @@
 				81D753762C60BF93000DDBB8 /* ShoppingListViewModel.swift */,
 			);
 			path = Shopping;
+			sourceTree = "<group>";
+		};
+		8184F3DF2C64A8710087D0AE /* Itunes */ = {
+			isa = PBXGroup;
+			children = (
+				8184F3E82C64B9140087D0AE /* Model */,
+				8184F3E72C64A89B0087D0AE /* VM */,
+				8184F3E62C64A8930087D0AE /* VC */,
+			);
+			path = Itunes;
+			sourceTree = "<group>";
+		};
+		8184F3E62C64A8930087D0AE /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				8184F3E02C64A8800087D0AE /* ItunesViewController.swift */,
+				8184F3E22C64A8880087D0AE /* ItunesDetailViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		8184F3E72C64A89B0087D0AE /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				8184F3E42C64A8910087D0AE /* ItunesViewModel.swift */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
+		8184F3E82C64B9140087D0AE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8184F3E92C64B91B0087D0AE /* ItunesModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		81D753722C60BC9C000DDBB8 /* VC */ = {
@@ -411,18 +430,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8184F3E52C64A8910087D0AE /* ItunesViewModel.swift in Sources */,
 				041280782AF1D14000972552 /* Resource.swift in Sources */,
 				810014882C5CA8A3006868D4 /* ShoppingListViewController.swift in Sources */,
 				8100148C2C5CAB5D006868D4 /* ShoppingListCell.swift in Sources */,
 				81D753692C60AB0C000DDBB8 /* Enum+Validation.swift in Sources */,
 				81D753712C60BC94000DDBB8 /* PhoneViewModel.swift in Sources */,
+				8184F3E32C64A8880087D0AE /* ItunesDetailViewController.swift in Sources */,
 				0412806F2AEFAD2D00972552 /* BirthdayViewController.swift in Sources */,
 				041280652AEFA2F000972552 /* SignTextField.swift in Sources */,
 				0412806C2AEFABFE00972552 /* PasswordViewController.swift in Sources */,
 				041280562AEFA04800972552 /* SignInViewController.swift in Sources */,
-				041280282AEF9BAB00972552 /* ViewController.swift in Sources */,
+				041280282AEF9BAB00972552 /* MainTabbarController.swift in Sources */,
 				81F928F62C6343AB00746867 /* ShoppingRecommendCollectionItem.swift in Sources */,
 				041280632AEFA0CE00972552 /* PointButton.swift in Sources */,
+				8184F3EA2C64B91B0087D0AE /* ItunesModel.swift in Sources */,
+				8184F3E12C64A8800087D0AE /* ItunesViewController.swift in Sources */,
 				04F6DC022C5B0D8200667F4D /* DetailViewController.swift in Sources */,
 				041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */,
 				04F6DBFE2C5B0C0300667F4D /* SearchViewController.swift in Sources */,
@@ -443,7 +466,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0412803B2AEF9BAC00972552 /* SeSACRxThreadsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,8 +473,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				041280472AEF9BAC00972552 /* SeSACRxThreadsUITestsLaunchTests.swift in Sources */,
-				041280452AEF9BAC00972552 /* SeSACRxThreadsUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

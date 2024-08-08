@@ -95,7 +95,7 @@ extension SignInViewController {
         
         output.onTouchSignInButton
             .bind(with: self) { owner, _ in
-                owner.dismissStack(for: ShoppingListViewController())
+                owner.showTabbar()
             }
             .disposed(by: disposeBag)
         

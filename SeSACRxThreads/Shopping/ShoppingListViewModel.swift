@@ -10,7 +10,14 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class ShoppingListViewModel {
+protocol ViewModelType{
+    associatedtype Input
+    associatedtype Output
+    
+    func transform(for input: Input) -> Output
+}
+
+final class ShoppingListViewModel: ViewModelType {
     private let disposeBag = DisposeBag()
     
     private var shoppingList: [ShoppingListCellInput] = []

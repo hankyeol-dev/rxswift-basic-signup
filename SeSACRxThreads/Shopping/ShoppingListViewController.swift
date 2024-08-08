@@ -121,6 +121,7 @@ extension ShoppingListViewController {
                 owner.view.endEditing(true)
             })
             .disposed(by: disposeBag)
+
         
         output.list
             .bind(

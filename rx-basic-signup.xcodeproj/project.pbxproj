@@ -24,9 +24,7 @@
 		041280712AEFAD3D00972552 /* PhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280702AEFAD3D00972552 /* PhoneViewController.swift */; };
 		041280732AEFAD4B00972552 /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280722AEFAD4B00972552 /* NicknameViewController.swift */; };
 		041280782AF1D14000972552 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280772AF1D14000972552 /* Resource.swift */; };
-		04F6DBFE2C5B0C0300667F4D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F6DBFD2C5B0C0300667F4D /* SearchViewController.swift */; };
 		04F6DC002C5B0C2200667F4D /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F6DBFF2C5B0C2200667F4D /* SearchTableViewCell.swift */; };
-		04F6DC022C5B0D8200667F4D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F6DC012C5B0D8200667F4D /* DetailViewController.swift */; };
 		810014882C5CA8A3006868D4 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810014872C5CA8A3006868D4 /* ShoppingListViewController.swift */; };
 		8100148A2C5CA8D9006868D4 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810014892C5CA8D9006868D4 /* Extension+UIViewController.swift */; };
 		8100148C2C5CAB5D006868D4 /* ShoppingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8100148B2C5CAB5D006868D4 /* ShoppingListCell.swift */; };
@@ -34,6 +32,7 @@
 		8184F3E32C64A8880087D0AE /* ItunesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184F3E22C64A8880087D0AE /* ItunesDetailViewController.swift */; };
 		8184F3E52C64A8910087D0AE /* ItunesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184F3E42C64A8910087D0AE /* ItunesViewModel.swift */; };
 		8184F3EA2C64B91B0087D0AE /* ItunesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184F3E92C64B91B0087D0AE /* ItunesModel.swift */; };
+		8184F3EC2C64F1520087D0AE /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184F3EB2C64F1520087D0AE /* Extension+UIImageView.swift */; };
 		81D753692C60AB0C000DDBB8 /* Enum+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D753682C60AB0C000DDBB8 /* Enum+Validation.swift */; };
 		81D7536B2C60B82D000DDBB8 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D7536A2C60B82D000DDBB8 /* SignUpViewModel.swift */; };
 		81D7536F2C60BB62000DDBB8 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D7536E2C60BB62000DDBB8 /* PasswordViewModel.swift */; };
@@ -78,9 +77,7 @@
 		041280702AEFAD3D00972552 /* PhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewController.swift; sourceTree = "<group>"; };
 		041280722AEFAD4B00972552 /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		041280772AF1D14000972552 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
-		04F6DBFD2C5B0C0300667F4D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		04F6DBFF2C5B0C2200667F4D /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
-		04F6DC012C5B0D8200667F4D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		810014872C5CA8A3006868D4 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		810014892C5CA8D9006868D4 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		8100148B2C5CAB5D006868D4 /* ShoppingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListCell.swift; sourceTree = "<group>"; };
@@ -88,6 +85,7 @@
 		8184F3E22C64A8880087D0AE /* ItunesDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesDetailViewController.swift; sourceTree = "<group>"; };
 		8184F3E42C64A8910087D0AE /* ItunesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesViewModel.swift; sourceTree = "<group>"; };
 		8184F3E92C64B91B0087D0AE /* ItunesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesModel.swift; sourceTree = "<group>"; };
+		8184F3EB2C64F1520087D0AE /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		81D753682C60AB0C000DDBB8 /* Enum+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+Validation.swift"; sourceTree = "<group>"; };
 		81D7536A2C60B82D000DDBB8 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		81D7536E2C60BB62000DDBB8 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
@@ -127,7 +125,7 @@
 		041280172AEF9BAB00972552 = {
 			isa = PBXGroup;
 			children = (
-				041280222AEF9BAB00972552 /* SeSACRxThreads */,
+				041280222AEF9BAB00972552 /* RxBasicSignUpAndItunes */,
 				041280212AEF9BAB00972552 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -142,7 +140,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		041280222AEF9BAB00972552 /* SeSACRxThreads */ = {
+		041280222AEF9BAB00972552 /* RxBasicSignUpAndItunes */ = {
 			isa = PBXGroup;
 			children = (
 				8184F3DF2C64A8710087D0AE /* Itunes */,
@@ -151,17 +149,17 @@
 				041280542AEF9C2600972552 /* SignIn */,
 				0412806D2AEFAD0F00972552 /* SignUpOptional */,
 				041280612AEFA0BE00972552 /* CustomView */,
-				04F6DBFC2C5B0BC200667F4D /* Search */,
 				041280232AEF9BAB00972552 /* AppDelegate.swift */,
 				041280252AEF9BAB00972552 /* SceneDelegate.swift */,
 				041280272AEF9BAB00972552 /* MainTabbarController.swift */,
 				81D753682C60AB0C000DDBB8 /* Enum+Validation.swift */,
 				810014892C5CA8D9006868D4 /* Extension+UIViewController.swift */,
+				8184F3EB2C64F1520087D0AE /* Extension+UIImageView.swift */,
 				0412802C2AEF9BAC00972552 /* Assets.xcassets */,
 				041280312AEF9BAC00972552 /* Info.plist */,
 				041280772AF1D14000972552 /* Resource.swift */,
 			);
-			path = SeSACRxThreads;
+			path = RxBasicSignUpAndItunes;
 			sourceTree = "<group>";
 		};
 		041280532AEF9C1F00972552 /* SignUp */ = {
@@ -200,16 +198,6 @@
 			path = SignUpOptional;
 			sourceTree = "<group>";
 		};
-		04F6DBFC2C5B0BC200667F4D /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				04F6DBFD2C5B0C0300667F4D /* SearchViewController.swift */,
-				04F6DBFF2C5B0C2200667F4D /* SearchTableViewCell.swift */,
-				04F6DC012C5B0D8200667F4D /* DetailViewController.swift */,
-			);
-			path = Search;
-			sourceTree = "<group>";
-		};
 		810014862C5CA891006868D4 /* Shopping */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +222,7 @@
 		8184F3E62C64A8930087D0AE /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				04F6DBFF2C5B0C2200667F4D /* SearchTableViewCell.swift */,
 				8184F3E02C64A8800087D0AE /* ItunesViewController.swift */,
 				8184F3E22C64A8880087D0AE /* ItunesDetailViewController.swift */,
 			);
@@ -446,12 +435,11 @@
 				041280632AEFA0CE00972552 /* PointButton.swift in Sources */,
 				8184F3EA2C64B91B0087D0AE /* ItunesModel.swift in Sources */,
 				8184F3E12C64A8800087D0AE /* ItunesViewController.swift in Sources */,
-				04F6DC022C5B0D8200667F4D /* DetailViewController.swift in Sources */,
 				041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */,
-				04F6DBFE2C5B0C0300667F4D /* SearchViewController.swift in Sources */,
 				81D7536B2C60B82D000DDBB8 /* SignUpViewModel.swift in Sources */,
 				04F6DC002C5B0C2200667F4D /* SearchTableViewCell.swift in Sources */,
 				041280732AEFAD4B00972552 /* NicknameViewController.swift in Sources */,
+				8184F3EC2C64F1520087D0AE /* Extension+UIImageView.swift in Sources */,
 				0412806A2AEFA91E00972552 /* SignUpViewController.swift in Sources */,
 				8100148A2C5CA8D9006868D4 /* Extension+UIViewController.swift in Sources */,
 				041280712AEFAD3D00972552 /* PhoneViewController.swift in Sources */,

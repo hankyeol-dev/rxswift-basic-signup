@@ -37,4 +37,8 @@ struct ItunesSearch: Codable {
     var getGenre: String {
         return genres.first ?? "없음"
     }
+    
+    var getComputedRating: String {
+        return String(round(rating * 10.0) / 10.0)
+    }
 }

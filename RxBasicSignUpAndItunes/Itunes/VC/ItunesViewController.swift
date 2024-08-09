@@ -21,6 +21,13 @@ final class ItunesViewController: UIViewController {
         view.tintColor = .black
         return view
     }()
+    private let searchedTable = {
+        let view = UITableView()
+        view.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
+        view.rowHeight = UITableView.automaticDimension
+        view.separatorStyle = .none
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +46,14 @@ final class ItunesViewController: UIViewController {
     
     private func configureView() {
         view.addSubview(searchBar)
+        view.addSubview(searchedTable)
         
         searchBar.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(8)
+        }
+        searchedTable.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
+            make.horizontalEdges.bottom.equalToSuperview()
         }
     }
     
@@ -75,8 +87,18 @@ final class ItunesViewController: UIViewController {
             .disposed(by: disposeBag)
         
         output.searchedItemList
-            .bind(with: self) { vc, results in
-                dump(results)
+            .bind(to: searchedTable.rx.items(
+                cellIdentifier: SearchTableViewCell.identifier,
+                cellType: SearchTableViewCell.self)) { row, item, cell in
+                    cell.bindCell(for: item)
+                }
+            .disposed(by: disposeBag)
+        
+        searchedTable.rx.modelSelected(ItunesSearch.self)
+            .bind(with: self) { mainVC, item in
+                let vc = ItunesDetailViewController()
+                vc.bindView(for: item)
+                mainVC.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
     }

@@ -8,9 +8,12 @@
 import UIKit
 
 import SnapKit
+import SnapKit
 import RxSwift
 
 final class ItunesDetailViewController: UIViewController {
+    private let disposeBag = DisposeBag()
+    
     private let scrollView = UIScrollView()
     private let appDetailView = UIView()
     
@@ -43,22 +46,66 @@ final class ItunesDetailViewController: UIViewController {
         return button
     }()
     
+    private let appNewsView = UIView()
+    private let appNewsTitle = {
+        let view = UILabel()
+        view.text = "새로운 소식"
+        view.font = .systemFont(ofSize: 14, weight: .semibold)
+        return view
+    }()
+    private let appNewsVersion = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 13, weight: .semibold)
+        view.textColor = .darkGray
+        return view
+    }()
+    private let appNews = {
+        let view = UILabel()
+        view.numberOfLines = 0
+        view.font = .systemFont(ofSize: 13, weight: .regular)
+        view.textColor = .gray
+        return view
+    }()
+    
+    private let appScreenShotCollection = {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 160, height: 240)
+        layout.minimumInteritemSpacing = 8
+        layout.sectionInset = UIEdgeInsets(top: 4, left: 20, bottom: 4, right: 20)
+        layout.scrollDirection = .horizontal
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.register(ScreenShotItem.self, forCellWithReuseIdentifier: ScreenShotItem.id)
+        return view
+    }()
+    
+    private let appDescription = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 14, weight: .semibold)
+        view.textColor = .darkGray
+        view.numberOfLines = 0
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        configureView()
+        configureDetailView()
+        configureHeaderView()
+        configureAppNewsView()
+        configureScreenShotView()
+        configureDescriptionView()
     }
     
-    private func configureView() {
+    private func configureDetailView() {
         view.addSubview(scrollView)
         
         scrollView.addSubview(appDetailView)
-        appDetailView.addSubview(appInfoBox)
         
-        [appIcon, appName, appCorp, appButton].forEach {
-            appInfoBox.addSubview($0)
+        [appInfoBox, appNewsView, appScreenShotCollection, appDescription].forEach {
+            appDetailView.addSubview($0)
         }
+        
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -66,6 +113,13 @@ final class ItunesDetailViewController: UIViewController {
             make.width.equalToSuperview()
             make.verticalEdges.equalTo(scrollView)
         }
+        
+    }
+    private func configureHeaderView() {
+        [appIcon, appName, appCorp, appButton].forEach {
+            appInfoBox.addSubview($0)
+        }
+        
         appInfoBox.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(appDetailView.safeAreaLayoutGuide)
             make.height.equalTo(150)
@@ -96,27 +150,62 @@ final class ItunesDetailViewController: UIViewController {
             make.height.equalTo(36)
         }
     }
+    private func configureAppNewsView() {
+        appNewsView.addSubview(appNewsTitle)
+        appNewsView.addSubview(appNewsVersion)
+        appNewsView.addSubview(appNews)
+        
+        appNewsView.snp.makeConstraints { make in
+            make.top.equalTo(appInfoBox.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(appDetailView.safeAreaLayoutGuide)
+            make.bottom.equalTo(appScreenShotCollection.snp.top).offset(-8)
+        }
+        appNewsTitle.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.horizontalEdges.equalTo(appNewsView.safeAreaLayoutGuide).inset(20)
+            make.height.equalTo(20)
+        }
+        appNewsVersion.snp.makeConstraints { make in
+            make.top.equalTo(appNewsTitle.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(appNewsView.safeAreaLayoutGuide).inset(20)
+            make.height.equalTo(20)
+        }
+        appNews.snp.makeConstraints { make in
+            make.top.equalTo(appNewsVersion.snp.bottom).offset(4)
+            make.horizontalEdges.equalTo(appNewsView.safeAreaLayoutGuide).inset(20)
+            make.bottom.equalTo(appNewsView.safeAreaLayoutGuide).inset(4)
+        }
+    }
+    private func configureScreenShotView() {
+        appScreenShotCollection.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(appDetailView.safeAreaLayoutGuide)
+            make.height.equalTo(280)
+        }
+    }
+    private func configureDescriptionView() {
+        appDescription.snp.makeConstraints { make in
+            make.horizontalEdges.bottom.equalTo(appDetailView.safeAreaLayoutGuide).inset(20)
+            make.top.equalTo(appScreenShotCollection.snp.bottom).offset(16)
+        }
+    }
     
     func bindView(for data: ItunesSearch) {
         appIcon.load(url: URL(string: data.appIcon)!)
         appName.text = data.appName
         appCorp.text = data.developer
-    }
-    
-}
-
-final class ItunesDetailViewModel: ViewModelType {
-    
-    struct Input {
+        appNewsVersion.text = "버전 " + data.version
+        appNews.text = data.releaseNotes
         
+        appScreenShotCollection.delegate = nil
+        appScreenShotCollection.dataSource = nil
+        
+        Observable.just(data.screenshotUrls)
+            .bind(to: appScreenShotCollection.rx.items(cellIdentifier: ScreenShotItem.id, cellType: ScreenShotItem.self)) { row, item, cell in
+                cell.image.load(url: URL(string: item)!)
+            }
+            .disposed(by: disposeBag)
+        
+        appDescription.text = data.description
     }
     
-    struct Output {
-        
-    }
-    
-    func transform(for input: Input) -> Output {
-        
-        return Output()
-    }
 }

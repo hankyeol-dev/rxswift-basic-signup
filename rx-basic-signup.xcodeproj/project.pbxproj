@@ -59,7 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		041280202AEF9BAB00972552 /* SeSACRxThreads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACRxThreads.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		041280202AEF9BAB00972552 /* RxBasicSignUpAndItunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxBasicSignUpAndItunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		041280232AEF9BAB00972552 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		041280252AEF9BAB00972552 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		041280272AEF9BAB00972552 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
@@ -86,6 +86,7 @@
 		8184F3E42C64A8910087D0AE /* ItunesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesViewModel.swift; sourceTree = "<group>"; };
 		8184F3E92C64B91B0087D0AE /* ItunesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesModel.swift; sourceTree = "<group>"; };
 		8184F3EB2C64F1520087D0AE /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
+		8184F3ED2C65CBA10087D0AE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		81D753682C60AB0C000DDBB8 /* Enum+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+Validation.swift"; sourceTree = "<group>"; };
 		81D7536A2C60B82D000DDBB8 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		81D7536E2C60BB62000DDBB8 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 		041280172AEF9BAB00972552 = {
 			isa = PBXGroup;
 			children = (
+				8184F3ED2C65CBA10087D0AE /* README.md */,
 				041280222AEF9BAB00972552 /* RxBasicSignUpAndItunes */,
 				041280212AEF9BAB00972552 /* Products */,
 			);
@@ -133,7 +135,7 @@
 		041280212AEF9BAB00972552 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				041280202AEF9BAB00972552 /* SeSACRxThreads.app */,
+				041280202AEF9BAB00972552 /* RxBasicSignUpAndItunes.app */,
 				041280362AEF9BAC00972552 /* SeSACRxThreadsTests.xctest */,
 				041280402AEF9BAC00972552 /* SeSACRxThreadsUITests.xctest */,
 			);
@@ -303,7 +305,7 @@
 				0412805F2AEFA0AC00972552 /* SnapKit */,
 			);
 			productName = SeSACRxThreads;
-			productReference = 041280202AEF9BAB00972552 /* SeSACRxThreads.app */;
+			productReference = 041280202AEF9BAB00972552 /* RxBasicSignUpAndItunes.app */;
 			productType = "com.apple.product-type.application";
 		};
 		041280352AEF9BAC00972552 /* SeSACRxThreadsTests */ = {
@@ -606,8 +608,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YM49LMS87D;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SeSACRxThreads/Info.plist;
+				INFOPLIST_FILE = RxBasicSignUpAndItunes/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "rx-basic-signup";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -619,8 +622,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACRxThreadsExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.RxBasicSignUpAndItunes;
+				PRODUCT_NAME = RxBasicSignUpAndItunes;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -638,8 +641,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YM49LMS87D;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SeSACRxThreads/Info.plist;
+				INFOPLIST_FILE = RxBasicSignUpAndItunes/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "rx-basic-signup";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -651,8 +655,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACRxThreadsExample;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.RxBasicSignUpAndItunes;
+				PRODUCT_NAME = RxBasicSignUpAndItunes;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

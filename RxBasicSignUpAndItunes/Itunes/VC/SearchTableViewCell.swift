@@ -149,7 +149,9 @@ final class SearchTableViewCell: UITableViewCell {
         appScreenShotCollection.delegate = nil
         appScreenShotCollection.dataSource = nil
         Observable.just(data.screenshotUrls)
-            .bind(to: appScreenShotCollection.rx.items(cellIdentifier: ScreenShotItem.id, cellType: ScreenShotItem.self)) { row, item, cell in
+            .bind(to: appScreenShotCollection.rx.items(
+                cellIdentifier: ScreenShotItem.id,
+                cellType: ScreenShotItem.self)) { row, item, cell in
                 cell.image.load(url: URL(string: item)!)
             }
             .disposed(by: disposeBag)
@@ -169,7 +171,7 @@ final class SearchTableViewCell: UITableViewCell {
 final class ScreenShotItem: UICollectionViewCell {
     static let id = "ScreenShotItem"
     
-    fileprivate let image = UIImageView()
+    let image = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

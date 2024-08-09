@@ -21,6 +21,7 @@ struct ItunesSearch: Codable {
     let appName: String
     let appId: Int
     let genres: [String]
+    let description: String
     
     enum CodingKeys: String, CodingKey {
         case appIcon = "artworkUrl512"
@@ -32,6 +33,7 @@ struct ItunesSearch: Codable {
         case appName = "trackName"
         case appId = "trackId"
         case genres
+        case description
     }
     
     var getGenre: String {

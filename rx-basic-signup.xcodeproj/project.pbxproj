@@ -33,6 +33,7 @@
 		8184F3E52C64A8910087D0AE /* ItunesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184F3E42C64A8910087D0AE /* ItunesViewModel.swift */; };
 		8184F3EA2C64B91B0087D0AE /* ItunesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184F3E92C64B91B0087D0AE /* ItunesModel.swift */; };
 		8184F3EC2C64F1520087D0AE /* Extension+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184F3EB2C64F1520087D0AE /* Extension+UIImageView.swift */; };
+		8184F3F02C65E5410087D0AE /* TaskTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8184F3EF2C65E5410087D0AE /* TaskTestViewController.swift */; };
 		81D753692C60AB0C000DDBB8 /* Enum+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D753682C60AB0C000DDBB8 /* Enum+Validation.swift */; };
 		81D7536B2C60B82D000DDBB8 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D7536A2C60B82D000DDBB8 /* SignUpViewModel.swift */; };
 		81D7536F2C60BB62000DDBB8 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D7536E2C60BB62000DDBB8 /* PasswordViewModel.swift */; };
@@ -87,6 +88,7 @@
 		8184F3E92C64B91B0087D0AE /* ItunesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesModel.swift; sourceTree = "<group>"; };
 		8184F3EB2C64F1520087D0AE /* Extension+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImageView.swift"; sourceTree = "<group>"; };
 		8184F3ED2C65CBA10087D0AE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8184F3EF2C65E5410087D0AE /* TaskTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTestViewController.swift; sourceTree = "<group>"; };
 		81D753682C60AB0C000DDBB8 /* Enum+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+Validation.swift"; sourceTree = "<group>"; };
 		81D7536A2C60B82D000DDBB8 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		81D7536E2C60BB62000DDBB8 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		041280222AEF9BAB00972552 /* RxBasicSignUpAndItunes */ = {
 			isa = PBXGroup;
 			children = (
+				8184F3EE2C65E5340087D0AE /* Test */,
 				8184F3DF2C64A8710087D0AE /* Itunes */,
 				810014862C5CA891006868D4 /* Shopping */,
 				041280532AEF9C1F00972552 /* SignUp */,
@@ -245,6 +248,14 @@
 				8184F3E92C64B91B0087D0AE /* ItunesModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8184F3EE2C65E5340087D0AE /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				8184F3EF2C65E5410087D0AE /* TaskTestViewController.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		81D753722C60BC9C000DDBB8 /* VC */ = {
@@ -424,6 +435,7 @@
 				8184F3E52C64A8910087D0AE /* ItunesViewModel.swift in Sources */,
 				041280782AF1D14000972552 /* Resource.swift in Sources */,
 				810014882C5CA8A3006868D4 /* ShoppingListViewController.swift in Sources */,
+				8184F3F02C65E5410087D0AE /* TaskTestViewController.swift in Sources */,
 				8100148C2C5CAB5D006868D4 /* ShoppingListCell.swift in Sources */,
 				81D753692C60AB0C000DDBB8 /* Enum+Validation.swift in Sources */,
 				81D753712C60BC94000DDBB8 /* PhoneViewModel.swift in Sources */,

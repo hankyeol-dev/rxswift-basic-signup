@@ -24,7 +24,7 @@
 
 1. RxCocoa로 TableViewCell 안의 CollectionView를 다룰 때, delegate와 관련된 Warning Error 핸들링
 
-<img width="full" "https://github.com/user-attachments/assets/0c66cff5-3b0d-4b1c-9a18-bfa2d222fa5b") />
+<img width="100%" "https://github.com/user-attachments/assets/0c66cff5-3b0d-4b1c-9a18-bfa2d222fa5b") />
 
 - 터미널에 찍힌 에러 코멘트에서는 혹시 개발자가 의도하지 않게 이전에 설정해준 delegation이 있을 수 있어 원하는 대로 Observable subscribing이 되지 않을 수 있다는 것을 알려주고 있었습니다.
 - 컬렉션뷰에 대한 delegate, dataSource와 관련한 protocol 채택이 없었지만, 컬렉션뷰에 넘겨줄 데이터 Observable을 binding 하는 코드 전에 delegate, dataSource 값을 nil로 할당하는 코드를 넣어 에러를 방지할 수 있었습니다.

@@ -37,7 +37,6 @@ enum ItunesNetworkError: Error {
     }
 }
 
-// https://itunes.apple.com/lookup?id=387771637&lang=ko_KR
 final class ItunesViewModel: InputOutputProtocol {
     private let disposeBag = DisposeBag()
     private let shared = URLSession.shared
@@ -48,71 +47,76 @@ final class ItunesViewModel: InputOutputProtocol {
     }
     
     struct Output {
-        let searchedItemList: PublishRelay<[ItunesSearch]>
-        let searchedError: PublishRelay<(any Error)?>
+        let searchedItemList: Observable<[ItunesSearch]>
+        let searchedError: Observable<ItunesNetworkError?>
     }
     
     func transform(for input: Input) -> Output {
         
-        let list = PublishRelay<[ItunesSearch]>()
-        let error = PublishRelay<(any Error)?>()
-        
-        input.searchButtonTouched
+        let apiResult = input.searchButtonTouched
             .withUnretained(self)
             .throttle(.seconds(2), scheduler: MainScheduler.instance)
             .withLatestFrom(input.searchBarText.orEmpty)
             .distinctUntilChanged()
-            .map {
-                self.searchData(for: $0)
+            .flatMapLatest { searched in
+                self.searchData(for: searched)
             }
-            .subscribe(with: self) { owner, emitter in
-                emitter.bind(with: owner) { _, result in
-                    list.accept(result.results)
+            .share()
+        
+        let successObservable = apiResult
+            .map { output -> [ItunesSearch] in
+                guard case let .success(result) = output else {
+                    return []
                 }
-                .disposed(by: owner.disposeBag)
-            } onError: { _, e in
-                error.accept(e)
+                
+                return result.results
             }
-            .disposed(by: disposeBag)
-
+        
+        let failureObservable = apiResult
+            .map { output -> ItunesNetworkError? in
+                guard case let .failure(error) = output else {
+                    return nil
+                }
+                return error
+            }
         
         return Output(
-            searchedItemList: list,
-            searchedError: error
+            searchedItemList: successObservable,
+            searchedError: failureObservable
         )
     }
     
-    func searchData(for term: String) -> Observable<ItunesSearchResult> {
+    private func searchData(for term: String) -> Single<Result<ItunesSearchResult, ItunesNetworkError>> {
         let baseURL = "https://itunes.apple.com/search?media=software&country=KR&lang=ko_KR&limit=20&term="
         
-        return Observable<ItunesSearchResult>.create { [weak self] emitter in
+        return Single.create { [weak self] emitter in
             guard let url = URL(string: baseURL + term) else {
-                emitter.onError(ItunesNetworkError.invalidURL)
+                emitter(.success(.failure(.invalidURL)))
                 return Disposables.create() // Disposable로 내보내서, 구독해서 사용할 수 있도록 처리
             }
             
             let task = self?.shared.dataTask(with: url) { data, res, error in
                 guard error == nil else {
-                    emitter.onError(ItunesNetworkError.requestError)
+                    emitter(.success(.failure(.requestError)))
                     return
                 }
                 
                 guard let res = res as? HTTPURLResponse,
                       (200...299).contains(res.statusCode) else {
-                    emitter.onError(ItunesNetworkError.responseError)
+                    emitter(.success(.failure(.responseError)))
                     return
                 }
                 
-                guard let data, let results = try? JSONDecoder().decode(ItunesSearchResult.self, from: data)
+                guard let data,
+                      let results = try? JSONDecoder().decode(ItunesSearchResult.self, from: data)
                 else {
-                    emitter.onError(ItunesNetworkError.dataNotFound)
+                    emitter(.success(.failure(.dataNotFound)))
                     return
                 }
                 
-                emitter.onNext(results)
-                emitter.onCompleted()
+                emitter(.success(.success(results)))
             }
-                
+            
             task?.resume()
             
             return Disposables.create()

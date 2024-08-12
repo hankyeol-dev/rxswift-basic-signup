@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import Toast
 
 final class ItunesViewController: UIViewController {
     private let disposeBag = DisposeBag()
@@ -78,10 +79,22 @@ final class ItunesViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+//        output.searchedError
+//            .bind(with: self) { vc, error in
+//                if let error = error as? ItunesNetworkError {
+//                    print(error.errorString)
+//                }
+//            }
+//            .disposed(by: disposeBag)
+        
         output.searchedError
-            .bind(with: self) { vc, error in
-                if let error = error as? ItunesNetworkError {
-                    print(error.errorString)
+            .asDriver(onErrorJustReturn: nil)
+            .drive(with: self) { vc, error in
+                if let error {
+                    var toastStyle = ToastStyle()
+                    toastStyle.backgroundColor = ValidationColor.error.byColor
+                    toastStyle.titleColor = .white
+                    vc.view.makeToast(error.errorString, style: toastStyle)
                 }
             }
             .disposed(by: disposeBag)
@@ -89,8 +102,8 @@ final class ItunesViewController: UIViewController {
         output.searchedItemList
             .bind(to: searchedTable.rx.items(
                 cellIdentifier: SearchTableViewCell.identifier,
-                cellType: SearchTableViewCell.self)) { row, item, cell in
-                    cell.bindCell(for: item)
+                cellType: SearchTableViewCell.self)) { row, result, cell in
+                    cell.bindCell(for: result)
                 }
             .disposed(by: disposeBag)
         

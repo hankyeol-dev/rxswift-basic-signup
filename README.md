@@ -15,7 +15,7 @@
 <br />
 
 |4. 쇼핑할 목록 추가/조회 화면|5. 아이튠즈 앱 검색 화면|6. 아이튠즈 앱 검색 화면 에러처리|7. 검색된 앱 상세 화면|
-|-|-|-|
+|-|-|-|-|
 |<img width="160" src="https://github.com/user-attachments/assets/f6ad78be-aafd-4e9a-ad08-373a3b21b74b" />|<img width="160" src="https://github.com/user-attachments/assets/1aa4a593-42ad-415d-922e-0b5ba01e76c4" />|<img width="160" src="https://github.com/user-attachments/assets/bfd163e2-84fb-47c0-b0a8-53c6e7069f13" />|<img width="160" src="https://github.com/user-attachments/assets/7161d427-3639-4a32-96fa-6c59a1beb2bb" />|
 
 <br />

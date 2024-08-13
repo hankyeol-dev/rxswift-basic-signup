@@ -79,14 +79,6 @@ final class ItunesViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-//        output.searchedError
-//            .bind(with: self) { vc, error in
-//                if let error = error as? ItunesNetworkError {
-//                    print(error.errorString)
-//                }
-//            }
-//            .disposed(by: disposeBag)
-        
         output.searchedError
             .asDriver(onErrorJustReturn: nil)
             .drive(with: self) { vc, error in
